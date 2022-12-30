@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>ice creme</title>
+  </head>
+  <body>
+    <!-- header -->
+    <div id="header">
+      <div class="img-container">
+        <img draggable="false" src="./image/Ice.jpg" alt="ice-bgc" />
+
+      </div>
+      <div id="nav_bar" class="nav-bar">
+        <h1 id="logo" class="nav-item">
+          <a href="#logo">ICE <span> CRUSH</span></a>
+        </h1>
+        <ul id="menu-bar" class="nav-item">
+          <li class="menu-item"><a href="./home.html">Home</a></li>
+          <li class="menu-item"><a href="./about_us.html">About Us</a></li>
+          <li class="menu-item"><a href="./price.html">Price</a></li>
+          <li class="menu-item"><a href="./contact_us.html">Contact Us</a></li>
+        </ul>
+        <div class="join-container nav-item">
+          <a href="./login.html" class="join-ice-cream">Login</a>
+          <a href="./sign-up.html" class="join-ice-cream">Sign-up</a>
+        </div>
+        <a href="./cart.html">
+          <div id="cartBtn" class="cart-container">
+            <img src="./image/shopping-cart.png" alt="shopping-cart" />
+          </div>
+        </a>
+      </div>
+    </div>
+    <!-- end header -->
+    <!-- main content -->
+    <div class="content">
+      <div class="side-bar content-section">
+        <ul class="side-menu">
+          <li class=""><a href="#">New Flavors</a></li>
+          <li class=""><a href="#">Categories</a></li>
+          <li class=""><a href="#">Contact Us</a></li>
+          <li class=""><a href="#">Order Now</a></li>
+          <li class=""><a href="#">Best Flavors</a></li>
+        </ul>
+        <img src="./image/ice-3.png" alt="" />
+        <img src="./image/ice-4.png" alt="" />
+      </div>
+      <div class="main content-section">
+        <table class="order-table">
+          <thead>
+            <tr>
+              <th id="prd-det">product details</th>
+              <th id="prd-qty">quantity</th>
+              <th id="prd-price">price</th>
+              <th id="prd-total">total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="order-det">
+                <img src="./image/corn-1.jpg" alt="" />
+                <div class="details">
+                  <span>Category: ice cream corn</span>
+                  <span>Flavor: chocolate</span>
+                </div>
+              </td>
+              <td class="quantity_input">
+                <input class="qty_input" type="number" placeholder="5" />
+                <button class="delete-product-order">X</button>
+              </td>
+              <td id="price_order_1">5 LYD</td>
+              <td id="total_price_order_1">25 LYD</td>
+            </tr>
+            <tr>
+              <td class="order-det">
+                <img src="./image/cup-1.jpg" alt="" />
+                <div class="details">
+                  <span>Category: ice cream cub</span>
+                  <span>Flavor: vanilla</span>
+                </div>
+              </td>
+              <td class="quantity_input">
+                <input class="qty_input" type="number" placeholder="3" />
+                <button class="delete-product-order">X</button>
+              </td>
+              <td>10 LYD</td>
+              <td>30 LYD</td>
+            </tr>
+            <tr>
+              <td class="order-det">
+                <img src="./image/stick-3.jpg" alt="" />
+                <div class="details">
+                  <span>Category: ice cream stick</span>
+                  <span>Flavor: cream</span>
+                </div>
+              </td>
+              <td class="quantity_input">
+                <input class="qty_input" type="number" placeholder="7" />
+                <button class="delete-product-order">X</button>
+              </td>
+              <td>3 LYD</td>
+              <td>21 LYD</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="checkout-order">
+          <h1>ORDER</h1>
+          <p>Item 3</p>
+          <p>Total Price</p>
+          <a href="./payment_info.html"><button title="checkout">Cheackout</button></a>
+        </div>
+      </div>
+    </div>
+    <!-- end main content -->
+    <!-- footer -->
+    <div class="footer">
+      <span id="copy_right">Copy Rights Reserved.</span>
+    </div>
+    <!-- end footer -->
+  </body>
+</html>
