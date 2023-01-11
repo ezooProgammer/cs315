@@ -130,7 +130,7 @@ if (isset($_POST["order"])) {
         <h1>ORDER</h1>
         <p>Item <?php echo $item_count ?></p>
         <p>Total Amount <?php echo $total_amount ?></p>
-        <a href="./payment_info.html"><button title="checkout">Cheackout</button></a>
+        <a href="./payment_info.php"><button title="checkout">Cheackout</button></a>
       </div>
     </div>
   </div>
