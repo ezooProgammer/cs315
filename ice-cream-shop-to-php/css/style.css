@@ -1,0 +1,663 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style-type: none;
+}
+body {
+  background-color: #fff;
+}
+.main-content hr {
+  width: 85%;
+  margin: auto;
+}
+#header {
+  width: 100%;
+  background-color: #c34df5;
+  /* padding: 10px; */
+  box-shadow: inset 0px -3px 2px 0px rgb(220, 220, 220);
+}
+.img-container img {
+  width: 100%;
+  height: 325px;
+}
+.img-container {
+  position: relative;
+}
+
+.login-container {
+  position: absolute;
+  background-color: #ae42dc9b;
+  width: 385px;
+  height: 285px;
+  padding: 15px;
+  top: calc(12px);
+  right: 150px;
+  border-radius: 12px;
+}
+.login-form {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+.input-control {
+  width: 85%;
+  margin: 5px auto;
+}
+.input-control label {
+  color: #fff;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.input-control input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+}
+.forget-pass-title {
+  color: #eee;
+  font-size: 14px;
+}
+#submit {
+  background-color: #eee;
+  border: 1px solid #2b2b2b;
+  cursor: pointer;
+  font-size: 16px;
+}
+#submit:active {
+  opacity: 0.9;
+}
+.nav-bar {
+  width: 100%;
+  overflow: hidden;
+}
+.nav-item {
+  float: left;
+}
+#logo {
+  padding: 10px 15px;
+  margin: 0 50px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+#logo a {
+  color: #fff;
+}
+#logo a span {
+  background-color: #fff;
+  color: #b042df;
+  padding: 3px;
+}
+#menu-bar {
+  width: 55%;
+  margin: auto;
+  padding: 8px 5%;
+  margin: 0 calc(200px - 150px);
+}
+
+.menu-item {
+  display: inline-block;
+  text-align: center;
+  width: calc((100% / 5) - 25px);
+  padding: 10px 0;
+  margin: 0 10px;
+  overflow: hidden;
+  /* background-color: darkslategray; */
+}
+.menu-item:hover {
+  background-color: #eee;
+}
+.menu-item:hover a {
+  color: #c34df5;
+}
+.menu-item:active {
+  opacity: 0.85;
+}
+.menu-item a {
+  width: 100%;
+  display: block;
+  font-size: 22px;
+  color: #eee;
+}
+.join-ice-cream {
+  display: inline-block;
+  background-color: #eee;
+  color: #c34df5;
+  margin: 7px;
+  padding: 10px;
+  border-radius: 2px;
+}
+.username-title {
+  color: white;
+  font-size: 1.3rem;
+  text-transform: capitalize;
+}
+#cart-link {
+  display: inline-block;
+}
+.cart-container {
+  background-color: #fff;
+  overflow: hidden;
+  width: 60px;
+  padding: 10px;
+  border-radius: 50%;
+  float: left;
+  margin: 0 15px;
+  cursor: pointer;
+}
+.cart-container img {
+  width: 35px;
+}
+.content {
+  overflow: hidden;
+  background-color: #b042df;
+}
+.content-section {
+  min-height: 750px;
+  float: left;
+}
+.main {
+  width: 85%;
+  float: left;
+  background-color: #fff;
+}
+.side-bar {
+  width: 15%;
+  background-color: #b042df;
+  overflow: hidden;
+  height: inherit;
+}
+.side-bar .side-menu {
+  width: 100%;
+  padding: 0 5px;
+}
+.side-bar li {
+  background-color: #fff;
+  padding: 20px 10px;
+  margin: 5px 0;
+}
+.side-bar li a {
+  display: block;
+  color: #000;
+}
+.side-bar li a:hover {
+  color: #b042df;
+}
+.side-bar img {
+  margin: 8px;
+  width: 220px;
+  display: block;
+}
+
+.footer {
+  width: 100%;
+  height: 150px;
+  margin-top: 5px;
+  background-color: #b042df;
+  position: relative;
+}
+#copy_right {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
+
+.title-shop {
+  color: black;
+  letter-spacing: 3px;
+  padding: 20px 36px;
+}
+
+.title-shop span {
+  cursor: pointer;
+  color: #b346be;
+}
+
+.img-main {
+  width: calc(25% - 50px);
+  margin: 10px 25px;
+  display: block;
+  float: left;
+}
+.describe-shop {
+  float: left;
+  padding: 10px;
+  width: 75%;
+}
+.describe-shop p {
+  font-size: 25px;
+  margin: 10px 0;
+  color: #b042df;
+  line-height: 45px;
+}
+.title-page {
+  color: #b042df;
+  padding: 15px;
+}
+/* about us */
+.about-describe {
+  text-align: center;
+  padding: 10px;
+}
+.about-describe h2 {
+  text-transform: capitalize;
+  color: #b042df;
+  margin: 15px 0;
+}
+.about-describe p {
+  margin: 10px 0;
+  font-size: 21px;
+}
+.our-team {
+  width: 100%;
+  overflow: hidden;
+}
+.our-team-label {
+  width: max-content;
+  padding: 10px;
+  margin: auto;
+  color: #b042df;
+
+  text-transform: capitalize;
+}
+.team-member {
+  float: left;
+  border: 1px solid #000;
+  margin: 35px;
+  width: calc((100% / 3) - 70px);
+  padding: 15px 5px;
+  text-align: center;
+}
+.team-member p {
+  margin: 10px;
+}
+.team-member img {
+  width: 125px;
+  border-radius: 50%;
+  display: block;
+  margin: auto;
+}
+
+/* end about us */
+/* contact us */
+.contact-services {
+  width: 85%;
+  margin: auto;
+  padding: 10px;
+  overflow: hidden;
+}
+.contact-way {
+  float: left;
+  border: 1px solid #000;
+  color: #eee;
+  background-color: #c866f2;
+  padding: 10px;
+  text-align: center;
+  width: calc(100% / 4);
+  margin: 0 calc(4%);
+  overflow: hidden;
+}
+
+.contact-way span {
+  padding: 10px 0;
+  display: block;
+  font-size: 18px;
+}
+.contact-way a {
+  color: #2b2b2b;
+  display: block;
+  padding: 10px 0;
+  font-weight: bold;
+}
+.map-shop {
+  width: 34%;
+  margin-left: 118px;
+  padding: 10px 15px;
+  float: left;
+}
+.map-shop h2 {
+  width: max-content;
+  padding: 5px;
+}
+.map-shop img {
+  width: 350px;
+  border: 1px solid;
+}
+.contact-form {
+  float: left;
+  padding: 80px 10px;
+  margin-left: 91px;
+  width: 35%;
+}
+.contact-form form button {
+  padding: 10px 10px;
+  width: 100px;
+}
+.contact-form form textarea,
+.contact-form form input {
+  padding: 10px;
+  width: 100%;
+  margin: 10px 0;
+}
+/* end contact us */
+/* prices */
+.categories-items {
+  width: 85%;
+  overflow: hidden;
+  margin: auto;
+  margin-bottom: 25px;
+}
+.categories-items h2 {
+  margin: 10px;
+}
+.categories-items .ice-cream-menu {
+  width: 100%;
+}
+.ice-cream-menu li img,
+.ice-cream-menu li span,
+.ice-cream-menu li button {
+  display: block;
+  margin: 10px;
+}
+
+.ice-cream-menu li {
+  width: calc((100% / 3) - 20px);
+  float: left;
+  text-align: center;
+  border: 1px solid #000;
+  margin: 0 10px;
+  padding: 25px;
+}
+.ice-cream-menu li img {
+  margin: auto;
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+}
+.ice-cream-menu li button {
+  margin: auto;
+  padding: 5px 15px;
+  background-color: #b042df;
+  color: #fff;
+  border: 1px solid #000;
+  font-size: 16px;
+}
+#flavors {
+}
+#price {
+}
+/* end prices */
+/* login & sign up */
+.subscribe-background {
+  background-image: url(../image/ice-2.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  overflow: hidden;
+  height: 100vh;
+}
+.subscribe-container {
+  width: 400px;
+  padding: 20px;
+  margin: 50px auto;
+  border: 1px solid rgb(83, 83, 83);
+  border-radius: 10px;
+  background-color: #ce5ad9d1;
+}
+.subscribe-container h1 {
+  color: #fff;
+}
+.subscribe-container form {
+  width: 100%;
+}
+.subscribe-container form label {
+  color: #fff;
+  display: block;
+  margin: 10px 0;
+}
+.subscribe-container form input {
+  display: block;
+  margin: 10px 0;
+
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+.subscribe-container form button {
+  margin: 10px 0;
+  display: block;
+  padding: 10px;
+}
+.wrong-login-message {
+  color: #6f1f2f;
+  margin: 10px 0;
+  text-transform: capitalize;
+}
+.sign-up-done {
+  color: #fff;
+}
+/* end login & sign up */
+/* cart */
+.order-table {
+  width: calc(75% - 20px);
+  border: 1px solid #000;
+  margin: 10px;
+  border-spacing: 0;
+  overflow: hidden;
+  float: left;
+}
+.order-table thead #prd-det {
+  width: 50%;
+}
+.order-table thead tr {
+  background-color: #b042df;
+}
+
+.order-table thead #prd-qty,
+.order-table thead #prd-total,
+.order-table thead #prd-price {
+  width: calc(50% / 3);
+}
+.order-table thead tr th {
+  color: #eee;
+  padding: 10px;
+}
+.order-table tbody td {
+  padding: 25px 0;
+}
+.order-table tbody .order-det img {
+  width: 150px;
+  float: left;
+}
+.order-table tbody .order-det .details {
+  margin: 50px 0;
+  float: left;
+}
+.order-table tbody .order-det .details span {
+  display: block;
+
+  margin: 10px 0;
+  font-size: 18px;
+}
+.order-table tbody tr .quantity_input input {
+  padding: 10px;
+  width: 100px;
+}
+.order-table tbody tr .quantity_input button {
+  display: block;
+  border: none;
+  outline: none;
+  background-color: tomato;
+  color: #fff;
+  font-size: 25px;
+  padding: 10px;
+  margin: 10px auto;
+  cursor: pointer;
+}
+.order-table tbody tr td:not(:first-child) {
+  vertical-align: top;
+  text-align: center;
+}
+.order-table tbody tr td {
+  border-bottom: 1px solid #000;
+}
+.checkout-order {
+  width: calc(25% - 20px);
+  border: 1px solid #000;
+  float: left;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  position: relative;
+}
+
+.checkout-order h1,
+.checkout-order p {
+  padding: 10px;
+}
+.checkout-order h1 {
+  background-color: #b042df;
+  color: #fff;
+}
+.checkout-order p {
+  font-size: 18px;
+}
+.checkout-order button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: #2b2b2b;
+  color: #fff;
+  cursor: pointer;
+}
+/* end cart */
+/* payment-info */
+.summary-order {
+  border: 1px solid #000;
+  width: 50%;
+  padding: 15px;
+  margin: 10px auto;
+}
+.summary-order h2 {
+  background-color: #b042df;
+  color: #fff;
+  width: max-content;
+  padding: 10px;
+}
+.summary-order span {
+  display: block;
+  font-size: 18px;
+  margin: 10px;
+}
+#payment-method {
+  width: 500px;
+  margin: 25px auto;
+  text-align: center;
+  border: 1px solid #000;
+  padding: 10px;
+}
+#payment-method img {
+  width: 150px;
+  border: 1px solid #000;
+}
+#payment-method h2 {
+  margin: 10px 0;
+}
+#payment-method label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#payment-method input[type="text"] {
+  width: 60%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+#payment-method input[type="submit"] {
+  background-color: #b042df;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#payment-method input[type="submit"]:hover {
+  background-color: #45a049;
+}
+/* end payment-info */
+/* order */
+.order-icecream-title {
+  padding: 10px;
+  text-align: center;
+  background-color: #b042df;
+  color: white;
+  margin: 0 10px;
+}
+.order-container {
+  padding: 10px;
+}
+.prd-order {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: 1px solid #000;
+  gap: 15px;
+  margin-bottom: 10px;
+  padding-right: 25px;
+}
+.prd-order label {
+  font-size: 20px;
+  color: #b346be;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.prd-order input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+  accent-color: #b042df;
+}
+.prd-order .prd-qty {
+  padding: 10px;
+  width: 75px;
+  font-size: 16px;
+}
+.flavor-label {
+  color: #fff !important;
+  background-color: #b042df;
+  padding: 5px;
+  font-weight: 400 !important;
+}
+.prd-order select {
+  padding: 10px;
+  font-size: 16px;
+  width: 150px;
+}
+.prd-order-img {
+  width: 150px;
+}
+.order-btn {
+  margin: 10px 0;
+  cursor: pointer;
+  font-size: 18px;
+  display: block;
+  padding: 10px;
+}
+
+/* end order */
