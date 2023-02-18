@@ -36,6 +36,7 @@ $logged = false;
 if (isset($_SESSION["username"])) {
     $logged = true;
     $username = $_SESSION["username"];
+    $cart_item_count = $_SESSION["cart_item_count"];
     // حتى يتم عرض بيانات حساب المستخدم الحالي في حقول تعديل البيانات
     $conn = new mysqli($server, $username_db, $password_db, $name_db);
     if ($conn->connect_error)
@@ -45,6 +46,8 @@ if (isset($_SESSION["username"])) {
     if ($result->num_rows > 0)
         $user = $result->fetch_assoc();
     $conn->close();
+} else {
+    header("location:login.php");
 }
 ?>
 <!DOCTYPE html>
@@ -89,6 +92,7 @@ if (isset($_SESSION["username"])) {
             <a id="cart-link" href="./cart.php">
                 <div id="cartBtn" class="cart-container">
                     <img src="./image/shopping-cart.png" alt="shopping-cart" />
+                    <span class="cart-item-count"><?= $cart_item_count ?></span>
                 </div>
             </a>
         </div>

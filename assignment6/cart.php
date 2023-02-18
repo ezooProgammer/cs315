@@ -1,38 +1,57 @@
 <?php
+require_once "config.php";
 session_start();
 $logged = false;
 if (isset($_SESSION["username"])) {
   $logged = true;
   $username = $_SESSION["username"];
+  $cart_item_count = $_SESSION["cart_item_count"];
+} else {
+  header("location:login.php");
 }
-function filter_post_req(string $category, array $product_list)
+
+function total_amount_calc(&$items)
 {
-  if (+$product_list["$category-qty"] === 0 || !isset($product_list["ice-$category-price"]))
-    return null;
-  $product_data = [
-    "name" => $product_list["ice-cream-$category"],
-    "flavor" => $product_list["ice-$category-flavor"],
-    "qty" => $product_list["$category-qty"],
-    "price" => $product_list["ice-$category-price"],
-  ];
-  $product_data["total-price"] = $product_data["price"] * $product_data["qty"];
-  return $product_data;
+  $amount = 0.0;
+  foreach ($items as $value) {
+    $amount += $value['total_price'];
+  }
+  return $amount;
 }
-$item_order = [];
-$total_amount = 0;
+$items_order = [];
+$total_amount = 0.0;
 
-if (isset($_POST["order"])) {
-  $item_order["corn"] = filter_post_req("corn", $_POST);
-  $item_order["cup"] = filter_post_req("cup", $_POST);
-  $item_order["stick"] = filter_post_req("stick", $_POST);
-  $item_order = array_filter($item_order, function ($item) {
-    return $item !== null;
-  });
-  $total_amount = array_sum(array_map(function ($item) {
-    return $item["total-price"];
-  }, $item_order));
+$conn = new mysqli($server, $username_db, $password_db, $name_db);
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
 }
-
+if (isset($_GET["deleted"]) && $_GET["deleted"] == "true") {
+  $sql = "SELECT COUNT(item_id) AS item_count FROM cart_items WHERE u_ID = " . $_SESSION["user_id"] . " ";
+  $cart_item_count = $conn->query($sql)->fetch_assoc()["item_count"];
+  $_SESSION["cart_item_count"] = $cart_item_count;
+}
+$sql = "SELECT * FROM cart_items WHERE u_ID = " . $_SESSION["user_id"] . "";
+$items_result = $conn->query($sql);
+if ($items_result->num_rows > 0) {
+  while ($item = $items_result->fetch_assoc()) {
+    $sql = "SELECT * FROM ice_creams WHERE f_id = " . $item["f_id"] . "";
+    $flavor_result = $conn->query($sql);
+    if ($flavor_result->num_rows > 0)
+      $flavor = $flavor_result->fetch_assoc();
+    $items_order[] = [
+      "item_id" => $item["item_id"],
+      "name" => $flavor["f_desc"],
+      "flavor" => $flavor["f_name"],
+      "flavor_id" => $flavor["f_id"],
+      "price" => $flavor["f_price"],
+      "qty" => $item["item_qty"],
+      "total_price" => $flavor["f_price"] * $item["item_qty"]
+    ];
+  }
+  $total_amount = total_amount_calc($items_order);
+}
+$item = null;
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,6 +94,7 @@ if (isset($_POST["order"])) {
       <a id="cart-link" href="./cart.php">
         <div id="cartBtn" class="cart-container">
           <img src="./image/shopping-cart.png" alt="shopping-cart" />
+          <span class="cart-item-count"><?= $cart_item_count ?></span>
         </div>
       </a>
     </div>
@@ -104,11 +124,11 @@ if (isset($_POST["order"])) {
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($item_order as $key => $item) {
+          <?php foreach ($items_order as $key => $item) {
           ?>
             <tr>
               <td class="order-det">
-                <img src="./image/<?= $key ?>-1.jpg" alt="" />
+                <img src="./image/<?= $item["flavor_id"] ?>.jpg" alt="" />
                 <div class="details">
                   <span>describe: <?= $item["name"] ?></span>
                   <span>Flavor: <?= $item["flavor"] ?></span>
@@ -116,19 +136,21 @@ if (isset($_POST["order"])) {
               </td>
               <td class="quantity_input">
                 <span> <?= $item["qty"] ?> </span>
-                <button class="delete-product-order">X</button>
+                <form action="delete_item_from_cart.php" method="post">
+                  <button class="delete-product-order" name="item_id" value="<?= $item["item_id"] ?>">X</button>
+                </form>
               </td>
               <td id="price_order_1"><?= $item["price"] ?> LYD</td>
-              <td id="total_price_order_1"><?= $item["total-price"] ?> LYD</td>
+              <td id="total_price_order_1"><?= $item["total_price"] ?> LYD</td>
             </tr>
           <?php } ?>
         </tbody>
       </table>
       <div class="checkout-order">
         <h1>ORDER</h1>
-        <p>Item <?= count($item_order) ?></p>
+        <p>Item <?= count($items_order) ?></p>
         <p>Total Amount <?= $total_amount ?></p>
-        <a href="./payment_info.php"><button title="checkout">Cheackout</button></a>
+        <a href="./payment_info.php"><button title="checkout">Checkout</button></a>
       </div>
     </div>
   </div>

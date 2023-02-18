@@ -14,6 +14,11 @@ if (isset($_POST["submit"])) {
   if ($result->num_rows > 0) {
     $_SESSION["user_id"] = $result->fetch_assoc()["u_ID"];
     $_SESSION["username"] = $username;
+    $sql = "SELECT COUNT(item_id) AS item_count FROM cart_items WHERE u_ID = " . $_SESSION["user_id"] . " ";
+    $cart_item_count = $conn->query($sql)->fetch_assoc()["item_count"];
+    if ($cart_item_count->num_rows > 0)
+      $_SESSION["cart_item_count"] = $cart_item_count;
+    else $_SESSION["cart_item_count"] = 0;
     header("location:home.php");
   } else {
     $wrong_message = true;

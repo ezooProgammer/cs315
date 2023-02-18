@@ -1,10 +1,45 @@
 <?php
+require_once "config.php";
 session_start();
 $logged = false;
 if (isset($_SESSION["username"])) {
   $logged = true;
   $username = $_SESSION["username"];
+  $cart_item_count = $_SESSION["cart_item_count"];
+} else {
+  header("location:login.php");
 }
+
+$conn = new mysqli($server, $username_db, $password_db, $name_db);
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+$sql = "SELECT * FROM ice_creams;";
+$result = $conn->query($sql);
+$ice_creams = [];
+if ($result->num_rows > 0)
+  $ice_creams = $result->fetch_all(MYSQLI_ASSOC);
+else
+  array_push($ice_creams, [['f_id' => 0], ['f_name' => 'unknown'], ['f_desc' => 'unknown'], ['f_price' => 0.0]]);
+
+if (isset($_POST["order"])) {
+  $ice_creams_orders = $_POST["ice_cream"];
+  $filtered_ice_creams = array_filter($ice_creams_orders, function ($ice_cream) {
+    return +$ice_cream["qty"] > 0 && isset($ice_cream["id"]);
+  });
+
+  if (!empty($filtered_ice_creams) && isset($_SESSION["user_id"])) {
+    foreach ($filtered_ice_creams as $key => $value) {
+      $sql = "INSERT INTO cart_items (f_id, item_qty,u_ID) VALUES ('" . $value["id"] . "','" . $value["qty"] . "','" . $_SESSION["user_id"] . "')";
+      $conn->query($sql);
+    }
+  }
+  $filtered_ice_creams = null;
+  $sql = "SELECT COUNT(item_id) AS item_count FROM cart_items WHERE u_ID = " . $_SESSION["user_id"] . " ";
+  $cart_item_count = $conn->query($sql)->fetch_assoc()["item_count"];
+  $_SESSION["cart_item_count"] = $cart_item_count;
+}
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +82,7 @@ if (isset($_SESSION["username"])) {
       <a id="cart-link" href="./cart.php">
         <div id="cartBtn" class="cart-container">
           <img src="./image/shopping-cart.png" alt="shopping-cart" />
+          <span class="cart-item-count"><?= $cart_item_count ?></span>
         </div>
       </a>
     </div>
@@ -68,51 +104,23 @@ if (isset($_SESSION["username"])) {
     <div class="main content-section">
       <h1 class="order-icecream-title">Order Your Ice Cream</h1>
       <div class="order-container">
-        <form action="cart.php" method="post">
-          <div class="prd-order">
-            <img class="prd-order-img" src="image/cup-1.jpg" alt="cup-ice" />
-            <label for="ice-cup-price">ice cream cup</label>
-            <input class="prd-qty" type="number" name="cup-qty" value="0" placeholder="quantity" />
-            <label class="flavor-label" for="ice-cup-flavor">Flavor</label>
-            <select name="ice-cup-flavor" id="ice-cup-flavor">
-              <option value="chocolate">chocolate</option>
-              <option value="vanilla">vanilla</option>
-              <option value="fraise">fraise</option>
-            </select>
-            <input type="checkbox" placeholder="ice-cream" id="ice-cup-price" name="ice-cup-price" value="5" />
-            <input type="text" placeholder="ice cream" name="ice-cream-cup" value="ice cream cup" hidden="true" />
-            <span>price 5 LYD</span>
-          </div>
+        <form action="" method="post">
+          <?php foreach ($ice_creams as $key => $ice) { ?>
+            <div class="prd-order">
+              <img class="prd-order-img" src="image/<?= $ice['f_id'] ?>.jpg" alt="cup-ice" />
+              <label for="<?= $ice['f_id'] ?>"><?= $ice['f_desc'] ?></label>
+              <input class="prd-qty" type="number" name="ice_cream[<?= $ice['f_id'] ?>][qty]" value="0" placeholder="quantity" />
+              <span class="flavor-label" for="">Flavor</span>
+              <span><?= $ice['f_name'] ?></span>
+              <input type="checkbox" placeholder="ice-cream" id="<?= $ice['f_id'] ?>" name="ice_cream[<?= $ice['f_id'] ?>][id]" value="<?= $ice['f_id'] ?>" />
+              <span><?= $ice['f_price'] ?> LYD</span>
+            </div>
+          <?php
+          } ?>
           <!--  -->
-          <div class="prd-order">
-            <img class="prd-order-img" src="image/stick-1.jpg" alt="stick-ice" />
-            <label for="ice-stick-price">ice cream stick</label>
-            <input class="prd-qty" type="number" name="stick-qty" value="0" placeholder="quantity" />
-            <label class="flavor-label" for="ice-stick-flavor">Flavor</label>
-            <select name="ice-stick-flavor" id="ice-stick-flavor">
-              <option value="chocolate">chocolate</option>
-              <option value="vanilla">vanilla</option>
-              <option value="fraise">fraise</option>
-            </select>
-            <input type="checkbox" placeholder="ice-cream" id="ice-stick-price" name="ice-stick-price" value="6" />
-            <input type="text" placeholder="ice cream" name="ice-cream-stick" value="ice cream stick" hidden="true" />
-            <span>price 6 LYD</span>
-          </div>
+
           <!--  -->
-          <div class="prd-order">
-            <img class="prd-order-img" src="image/corn-1.jpg" alt="corn-ice" />
-            <label for="ice-corn-price">ice cream corn</label>
-            <input class="prd-qty" type="number" name="corn-qty" value="0" placeholder="quantity" />
-            <label class="flavor-label" for="ice-corn-flavor">Flavor</label>
-            <select name="ice-corn-flavor" id="ice-corn-flavor">
-              <option value="chocolate">chocolate</option>
-              <option value="vanilla">vanilla</option>
-              <option value="fraise">fraise</option>
-            </select>
-            <input type="checkbox" placeholder="ice-cream" id="ice-corn-price" name="ice-corn-price" value="7" />
-            <input type="text" placeholder="ice cream" name="ice-cream-corn" value="ice cream corn" hidden="true" />
-            <span>price 7 LYD</span>
-          </div>
+
           <!--  -->
           <input type="submit" name="order" class="order-btn" value="order" />
         </form>

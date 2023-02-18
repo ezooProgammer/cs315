@@ -4,6 +4,9 @@ $logged = false;
 if (isset($_SESSION["username"])) {
   $logged = true;
   $username = $_SESSION["username"];
+  $cart_item_count = $_SESSION["cart_item_count"];
+} else {
+  header("location:login.php");
 }
 ?>
 <!DOCTYPE html>
@@ -47,6 +50,7 @@ if (isset($_SESSION["username"])) {
       <a id="cart-link" href="./cart.php">
         <div id="cartBtn" class="cart-container">
           <img src="./image/shopping-cart.png" alt="shopping-cart" />
+          <span class="cart-item-count"><?= $cart_item_count ?></span>
         </div>
       </a>
     </div>

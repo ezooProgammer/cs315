@@ -148,14 +148,24 @@ body {
   display: inline-block;
 }
 .cart-container {
+  position: relative;
   background-color: #fff;
-  overflow: hidden;
   width: 60px;
   padding: 10px;
   border-radius: 50%;
   float: left;
   margin: 0 15px;
   cursor: pointer;
+}
+.cart-item-count {
+  position: absolute;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  width: 25px;
+  text-align: center;
+  padding: 5px;
+  top: 0;
 }
 .cart-container img {
   width: 35px;

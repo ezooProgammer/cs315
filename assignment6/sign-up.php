@@ -51,7 +51,6 @@ if (isset($_POST["submit"])) {
           <input type="email" name="email" id="email" placeholder="enter your email" required />
           <label for="password">password</label>
           <input type="password" name="password" id="password" placeholder="enter your password" required />
-
           <label for="confirm-password">re-password</label>
           <input type="password" name="confirm-password" id="confirm-password" placeholder="match the password" required />
           <?php
